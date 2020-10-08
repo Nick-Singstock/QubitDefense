@@ -47,28 +47,19 @@ public:
 			cout << gate_str << endl;
 
 			if (gate_str[0] == 'x') {
-				qc.x(int(gate_str[1]));
+				qc.x(int(gate_str[1]) - 48);
 			}
 			else if (gate_str[0] == 'y') {
-				qc.y(int(gate_str[1]));
+				qc.y(int(gate_str[1]) - 48);
 			}
 			else if (gate_str[0] == 'z') {
-				qc.z(int(gate_str[1]));
+				qc.z(int(gate_str[1]) - 48);
 			}
 			else if (gate_str[0] == 'h') {
-				stringstream nss(gate_str[1]);
-				//const char n = gate_str[1];
-				//cout << n << endl;
-				int x;// = atoi (n);
-				nss >> x;
-				cout << "Value x = " << x << endl;
-				//istringstream(gate_str[1]) >> x;
-
-				//int x = stoi(gate_str[1])
-				qc.h(x);
+				qc.h(int(gate_str[1]) - 48);
 			}
 			else if (gate_str[0] == 'c') {
-				qc.cx(int(gate_str[1]), int(gate_str[2]));
+				qc.cx(int(gate_str[1]) - 48, int(gate_str[2]) - 48);
 			}
 		}
 

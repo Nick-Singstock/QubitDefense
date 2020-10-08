@@ -85,8 +85,18 @@ public:
 			vectors.push_back("(" + std::to_string(real(ket[j])) + ") + (" + std::to_string(imag(ket[j])) + ")" + "*i");
 		}
 
-		return ket;
+		return vectors;
 	}
 
 
 };
+
+vector<std::complex<double>> quick_states(int n_qubits, vector<string> gate_list) {
+	// initialize class
+	Interpreter intp;
+	// set number of qubits
+	intp.set_qubits(n_qubits);
+	// setup circuit
+	Simulator result = intp.make_circuit(gate_list);
+	return result.get_statevector();
+}

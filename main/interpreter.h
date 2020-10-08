@@ -2,9 +2,9 @@
 #include "microqiskit.h"
 #include <math.h>
 #include <vector>
-#include <string> 
+//#include <string> 
 //#include <stdlib.h>
-#include <sstream>
+//#include <sstream>
 
 using namespace std;
 
@@ -78,19 +78,15 @@ public:
 		// get statevectors 
 		Simulator result(qc);
 
-		cout << "\n= 3.1 =" << endl;
-
 		vector<std::complex<double>> ket = result.get_statevector();
 
-		cout << "\n= 3.2 =" << endl;
-
 		// write vectors to string array
-		vector<string> vectors;
-		for (int j = 0; j < ket.size(); j++) {
-			vectors.push_back("(" + std::to_string(real(ket[j])) + ") + (" + std::to_string(imag(ket[j])) + ")" + "*i");
-		}
+		//vector<string> vectors;
+		//for (int j = 0; j < ket.size(); j++) {
+		//	vectors.push_back("(" + std::to_string(real(ket[j])) + ") + (" + std::to_string(imag(ket[j])) + ")" + "*i");
+		//}
 
-		return vectors;
+		return ket;
 	}
 
 

@@ -42,7 +42,7 @@ public:
 		qc.initialize(real_ket);
 
 		// add gates to quantum circuit
-		for (int i = 0; i < gate_list.size(); i = i + 1) {
+		for (int i = 0; i < gate_list.size(); i++) {
 			string gate_str = gate_list[i];
 
 			if (gate_str[0] == 'x') {
@@ -99,4 +99,24 @@ vector<std::complex<double>> quick_states(int n_qubits, vector<string> gate_list
 	// setup circuit
 	Simulator result = intp.make_circuit(gate_list);
 	return result.get_statevector();
+}
+
+bool is_equal(double s1, double s2) {
+	double threshold = 0.01;
+	if (s1 - s2 < threshold && s1 - s2 > -threshold) {
+		return true
+	}
+	return false
+}
+
+bool check_states(vector<std::complex<double>> current_state, vector<std::complex<double>> end_state) {
+	for (int i = 0; i < current_state.size(); i++) {
+		if (is_equal(real(current_state[i]), real(end_state[i])) == false) {
+			return false;
+		}
+		else if (is_equal(imag(current_state[i]), imag(end_state[i])) == false) {
+			return false;
+		}
+	}
+	return true;
 }

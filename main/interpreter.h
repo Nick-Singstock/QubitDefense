@@ -21,7 +21,7 @@ public:
 		n_qubits = n;
 	}
 
-	void make_circuit(vector<string> gate_list) {
+	Simulator make_circuit(vector<string> gate_list) {
 		// make a quantum circuit
 		qc.set_registers(n_qubits);
 
@@ -44,7 +44,6 @@ public:
 		// add gates to quantum circuit
 		for (int i = 0; i < gate_list.size(); i = i + 1) {
 			string gate_str = gate_list[i];
-			cout << gate_str << endl;
 
 			if (gate_str[0] == 'x') {
 				qc.x(int(gate_str[1]) - 48);
@@ -70,21 +69,21 @@ public:
 		}
 
 		Simulator result(qc);
-		cout << result.get_qiskit() << endl;
+		return result;
 
 	}
 
-	vector<string> get_statevectors() {
+	vector<string> get_statevector_string() {
 		// get statevectors 
 		Simulator result(qc);
 
 		vector<std::complex<double>> ket = result.get_statevector();
 
 		// write vectors to string array
-		//vector<string> vectors;
-		//for (int j = 0; j < ket.size(); j++) {
-		//	vectors.push_back("(" + std::to_string(real(ket[j])) + ") + (" + std::to_string(imag(ket[j])) + ")" + "*i");
-		//}
+		vector<string> vectors;
+		for (int j = 0; j < ket.size(); j++) {
+			vectors.push_back("(" + std::to_string(real(ket[j])) + ") + (" + std::to_string(imag(ket[j])) + ")" + "*i");
+		}
 
 		return ket;
 	}

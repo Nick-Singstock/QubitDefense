@@ -58,6 +58,12 @@ public:
 			else if (gate_str[0] == 'h') {
 				qc.h(int(gate_str[1]) - 48);
 			}
+			else if (gate_str[0] == 's') {
+				qc.rz(M_PI / 2, int(gate_str[1]) - 48);
+			}
+			else if (gate_str[0] == 't') {
+				qc.rz(M_PI / 4, int(gate_str[1]) - 48);
+			}
 			else if (gate_str[0] == 'c') {
 				qc.cx(int(gate_str[1]) - 48, int(gate_str[2]) - 48);
 			}

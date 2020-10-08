@@ -2,9 +2,7 @@
 #include "microqiskit.h"
 #include <math.h>
 #include <vector>
-//#include <string> 
-//#include <stdlib.h>
-//#include <sstream>
+#include <game_state.h>
 
 using namespace std;
 
@@ -104,9 +102,9 @@ vector<std::complex<double>> quick_states(int n_qubits, vector<string> gate_list
 bool is_equal(double s1, double s2) {
 	double threshold = 0.01;
 	if (s1 - s2 < threshold && s1 - s2 > -threshold) {
-		return true
+		return true;
 	}
-	return false
+	return false;
 }
 
 bool check_states(vector<std::complex<double>> current_state, vector<std::complex<double>> end_state) {
@@ -119,4 +117,30 @@ bool check_states(vector<std::complex<double>> current_state, vector<std::comple
 		}
 	}
 	return true;
+}
+
+// will manage the current status of the game
+class game_manager(int level, vector<string> gate_list) {
+public:
+	int n_qubits = 3;
+	vector<string> secret_gates = get_secret_gates(level); // TODO
+	vector<std::complex<double>> end_state = get_end_state(level); // TODO
+
+	// TODO: combine secret_gates and gate_list to get full_gate_list
+
+	// get current statevector
+	vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
+	
+	// call to determine if game is won
+	bool game_won() {
+		return check_states(current_state, end_state);
+	}
+
+	// call to get current statevector of game
+	vector<double> statevector() {
+		vector<double> states_polar = polar_statevector(current_state);
+		return states_polar;
+	}
+
+
 }

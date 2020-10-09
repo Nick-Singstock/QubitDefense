@@ -182,7 +182,7 @@ vector<string> get_secret_gates(int level) {
 
 	case 2:
 		gates.push_back("h1");
-		gates.push_back("c12");
+		gates.push_back("c10");
 		break;
 
 	}

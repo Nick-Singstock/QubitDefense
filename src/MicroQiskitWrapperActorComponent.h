@@ -358,77 +358,77 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 	// it translates an entire statevector, so 2^N entries
 	// each of them will be a pair (magnitude, argument)
 	// declare variables
-	float tol = .01;
-	int n = cartesian.size();
-	double mag, arg, re, im; // auxiliary for each entry
+	float tol_gs = .01;
+	int n_gs = cartesian.size();
+	double mag_gs, arg_gs, re_gs, im_gs; // auxiliary for each entry
 	vector<vector<double>> polar_statevector;
 
 	// loop through state vector
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < n_gs; i++) {
 		// get faulty results
-		re = real(cartesian[i]);
-		im = imag(cartesian[i]);
-		mag = sqrt(re * re + im * im);
-		if (abs(re) < tol) {
-			if (abs(im) < tol) {
-				arg = 0;
+		re_gs = real(cartesian[i]);
+		im_gs = imag(cartesian[i]);
+		mag = sqrt(re_gs * re_gs + im_gs * im_gs);
+		if (abs(re_gs) < tol_gs) {
+			if (abs(im_gs) < tol_gs) {
+				arg_gs = 0;
 			}
-			else if (im > tol) {
-				arg = M_PI / 2;
+			else if (im_gs > tol_gs) {
+				arg_gs = M_PI / 2;
 			}
 			else {
-				arg = -M_PI / 2;
+				arg_gs = -M_PI / 2;
 			}
 		}
-		else if (re > tol) {
-			arg = atan(im / re);
+		else if (re_gs > tol_gs) {
+			arg_gs = atan(im_gs / re_gs);
 		}
 		else {
-			arg = M_PI - atan(im / re);
+			arg = M_PI - atan(im_gs / re_gs);
 		}
 
 		// recover the ideal solutions
-		if (abs(mag - 1) < tol) {
-			mag = 1;
+		if (abs(mag_gs - 1) < tol_gs) {
+			mag_gs = 1;
 		}
-		if (abs(sqrt(2) * mag - 1) < tol) {
-			mag = 1 / sqrt(2);
+		if (abs(sqrt(2) * mag_gs - 1) < tol_gs) {
+			mag_gs = 1 / sqrt(2);
 		}
-		if (abs(2 * mag - 1) < tol) {
-			mag = 0.5;
+		if (abs(2 * mag_gs - 1) < tol_gs) {
+			mag_gs = 0.5;
 		}
-		if (abs(2 * sqrt(2) * mag - 1) < tol) {
-			mag = 0.5 / sqrt(2);
+		if (abs(2 * sqrt(2) * mag_gs - 1) < tol_gs) {
+			mag_gs = 0.5 / sqrt(2);
 		}
 
-		if (abs(arg) < tol) {
-			arg = 0;
+		if (abs(arg_gs) < tol_gs) {
+			arg_gs = 0;
 		}
-		if (abs(arg - M_PI) < tol) {
-			arg = M_PI;
+		if (abs(arg_gs - M_PI) < tol_gs) {
+			arg_gs = M_PI;
 		}
-		vector<double> aux;
-		aux.push_back(mag);
-		aux.push_back(arg);
+		vector<double> aux_gs;
+		aux_gs.push_back(mag_gs);
+		aux_gs.push_back(arg_gs);
 
 		// add entry to polar state vector
-		polar_statevector.push_back(aux);
+		polar_statevector.push_back(aux_gs);
 	}
 
 	return polar_statevector;
 }
 
-vector<vector<vector<double>>> start_level(int level) {
+vector<vector<vector<double>>> start_level(int level_gs) {
 	// gives initial state and goal state for each level
 	// returns states, with states[0] initial state and state[1] goal state
 
 	// initialize variables
-	vector<vector<vector<double>>> states;
-	vector<vector<double>> initial, goal;
-	double aux = 1 / sqrt(2);
+	vector<vector<vector<double>>> states_gs;
+	vector<vector<double>> initial_gs, goal_gs;
+	double aux_gs = 1 / sqrt(2);
 
-	switch (level)	// Initial and goal states are hard coded for each level
-	{				// This ain't pretty
+	switch (level_gs)	// Initial and goal states are hard coded for each level
+	{					// This ain't pretty
 	case 0:
 		for (int i = 0; i < 8; i++) {
 			vector<double> polar1, polar2;
@@ -448,31 +448,31 @@ vector<vector<vector<double>>> start_level(int level) {
 				polar2.push_back(0.0);
 				polar2.push_back(0.0);
 			}
-			initial.push_back(polar1);
-			goal.push_back(polar2);
+			initial_gs.push_back(polar1);
+			goal_gs.push_back(polar2);
 		}
 		break;
 
 	case 1:
 		for (int i = 0; i < 8; i++) {
 			vector<double> polar1, polar2;
-			polar1.push_back(0.5 * aux);
+			polar1.push_back(0.5 * aux_gs);
 			polar1.push_back(0.0);
 
 			if (i == 6) {
-				polar2.push_back(aux);
+				polar2.push_back(aux_gs);
 				polar2.push_back(0.0);
 			}
 			else if (i == 7) {
-				polar2.push_back(aux);
+				polar2.push_back(aux_gs);
 				polar2.push_back(M_PI);
 			}
 			else {
 				polar2.push_back(0.0);
 				polar2.push_back(0.0);
 			}
-			initial.push_back(polar1);
-			goal.push_back(polar2);
+			initial_gs.push_back(polar1);
+			goal_gs.push_back(polar2);
 		}
 		break;
 
@@ -480,7 +480,7 @@ vector<vector<vector<double>>> start_level(int level) {
 		for (int i = 0; i < 8; i++) {
 			vector<double> polar1, polar2;
 			if (i == 0 || i == 3) {
-				polar1.push_back(aux);
+				polar1.push_back(aux_gs);
 			}
 			else {
 				polar1.push_back(0.0);
@@ -488,68 +488,68 @@ vector<vector<vector<double>>> start_level(int level) {
 			polar1.push_back(0.0);
 
 			if (i == 3) {
-				polar2.push_back(aux);
+				polar2.push_back(aux_gs);
 				polar2.push_back(-0.5 * M_PI);
 			}
 			else if (i == 5) {
-				polar2.push_back(aux);
+				polar2.push_back(aux_gs);
 				polar2.push_back(0.5 * M_PI);
 			}
 			else {
 				polar2.push_back(0.0);
 				polar2.push_back(0.0);
 			}
-			initial.push_back(polar1);
-			goal.push_back(polar2);
+			initial_gs.push_back(polar1);
+			goal_gs.push_back(polar2);
 		}
 		break;
 	}
 
-	states.push_back(initial);
-	states.push_back(goal);
+	states_gs.push_back(initial_gs);
+	states_gs.push_back(goal_gs);
 
-	return states;
+	return states_gs;
 }
 
-vector<string> get_secret_gates(int level) {
+vector<string> get_secret_gates(int level_gs) {
 	// let the game manager know how to generate the initial state
 	// again, this is hard coded so not very beautiful
 
-	vector<string> gates;
+	vector<string> gates_gs;
 
-	switch (level) {
+	switch (level_gs) {
 	case 1:
-		gates.push_back("h0");
-		gates.push_back("h1");
-		gates.push_back("h2");
+		gates_gs.push_back("h0");
+		gates_gs.push_back("h1");
+		gates_gs.push_back("h2");
 		break;
 
 	case 2:
-		gates.push_back("h1");
-		gates.push_back("c10");
+		gates_gs.push_back("h1");
+		gates_gs.push_back("c10");
 		break;
 
 	}
 
-	return gates;
+	return gates_gs;
 }
 
-vector<std::complex<double>> get_end_state(int level) {
+vector<std::complex<double>> get_end_state(int level_gs) {
 	// let the game manager know what the goal state is
 	// the end state for each level is hard coded
-	vector<std::complex<double>> end_state;
-	double aux = 1 / sqrt(2);
+	vector<std::complex<double>> end_state_gs;
+	double aux_gs = 1 / sqrt(2);
 
-	switch (level) {
+	switch (level_gs) {
 	case 0:
 		for (int i = 0; i < 8; i++) {
 			if (i == 6) {
 				std::complex<double> e(-1.0, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 			else {
 				std::complex<double> e(0.0, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 		}
 		break;
@@ -558,15 +558,15 @@ vector<std::complex<double>> get_end_state(int level) {
 		for (int i = 0; i < 8; i++) {
 			if (i == 6) {
 				std::complex<double> e(aux, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 			else if (i == 7) {
 				std::complex<double> e(-aux, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 			else {
 				std::complex<double> e(0.0, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 		}
 		break;
@@ -575,21 +575,21 @@ vector<std::complex<double>> get_end_state(int level) {
 		for (int i = 0; i < 8; i++) {
 			if (i == 3) {
 				std::complex<double> e(0.0, -aux);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 			else if (i == 5) {
 				std::complex<double> e(0.0, aux);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 			else {
 				std::complex<double> e(0.0, 0.0);
-				end_state.push_back(e);
+				end_state_gs.push_back(e);
 			}
 		}
 		break;
 	}
 
-	return end_state;
+	return end_state_gs;
 }
 
 //int mypow(int x, int p)

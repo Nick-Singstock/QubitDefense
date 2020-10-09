@@ -20,11 +20,11 @@ int main() {
 	cout << "\n= 2 =" << endl;
 
 	// setup circuit
-	intp.make_circuit(gates);
+	Simulator results = intp.make_circuit(gates);
 
 	cout << "\n= 3 =" << endl;
 
-	vector<string> vectors = intp.get_statevectors();
+	vector<string> vectors = results.get_statevector();
 
 	cout << "\n= 4 =" << endl;
 

@@ -6,7 +6,7 @@
 
 Start by importing the main library and calling the main class, `game_manager`, who will deal with everything
 ~~~~
-#include master.h
+#include master_header.h
 
 game_manager gm;
 ~~~~

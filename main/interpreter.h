@@ -2,7 +2,7 @@
 #include "microqiskit.h"
 #include <math.h>
 #include <vector>
-#include <game_state.h>
+#include "game_state.h"
 
 using namespace std;
 

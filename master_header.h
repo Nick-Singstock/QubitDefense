@@ -798,6 +798,8 @@ public:
 
 	// call to determine if game is won
 	bool game_won() {
+		// get current statevector
+		vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
 		return check_states(current_state, end_state);
 	}
 

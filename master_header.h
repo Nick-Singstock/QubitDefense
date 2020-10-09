@@ -367,7 +367,7 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 		// get faulty results
 		re = real(cartesian[i]);
 		im = imag(cartesian[i]);
-		mag = abs(re * re + im * im);
+		mag = sqrt(re * re + im * im);
 		if (abs(re) < tol) {
 			if (abs(im) < tol) {
 				arg = 0;
@@ -379,8 +379,11 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 				arg = -M_PI / 2;
 			}
 		}
-		else {
+		else if (re > tol) {
 			arg = atan(im / re);
+		}
+		else {
+			arg = M_PI - atan(im / re);
 		}
 
 		// recover the ideal solutions
@@ -522,7 +525,7 @@ vector<string> get_secret_gates(int level) {
 
 	case 2:
 		gates.push_back("h1");
-		gates.push_back("c12");
+		gates.push_back("c10");
 		break;
 
 	}

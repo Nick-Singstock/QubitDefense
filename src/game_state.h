@@ -26,10 +26,13 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 		im = imag(cartesian[i]);
 		mag = abs(re * re + im * im);
 		if (abs(re) < tol) {
-			if (im > 0) {
+			if (abs(im) < tol) {
+				arg = 0;
+			}
+			else if (im > tol) {
 				arg = M_PI / 2;
 			}
-			else if (im < 0) {
+			else {
 				arg = -M_PI / 2;
 			}
 		}

@@ -29,7 +29,7 @@ int main() {
 	}
 
 	// test quick_states
-	vector<std::complex<double>> quick_vec = quick_states(int nq = 2;, gates);
+	vector<std::complex<double>> quick_vec = quick_states(2, gates);
 	cout << "Statevectors from quick_states with [h0, c01]:" << endl;
 	for (int j = 0; j < quick_vec.size(); j++) {
 		cout << quick_vec[j] << endl;
@@ -47,14 +47,14 @@ int main() {
 	cout << "combined gate order = " << combined_gates << endl;
 
 	// test 3 qubits
-	vector<std::complex<double>> quick_vec3 = quick_states(int nq = 3, combined_gates);
+	vector<std::complex<double>> quick_vec3 = quick_states(3, combined_gates);
 	cout << "Statevectors from quick_states for 3 qubits with [h0, c01, h1, x0]:" << endl;
 	for (int j = 0; j < quick_vec3.size(); j++) {
 		cout << quick_vec3[j] << endl;
 	}
 
 	// test check_states == false
-	vector<std::complex<double>> quick_vec2 = quick_states(int nq = 2, combined_gates);
+	vector<std::complex<double>> quick_vec2 = quick_states(2, combined_gates);
 	bool same_states2 = check_states(quick_vec2, vectors);
 	cout << "Same state (false) = " << same_states2 << endl;
 

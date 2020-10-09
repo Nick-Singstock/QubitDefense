@@ -85,8 +85,6 @@ public:
 
 		return vectors;
 	}
-
-
 };
 
 vector<std::complex<double>> quick_states(int n_qubits, vector<string> gate_list) {
@@ -119,14 +117,30 @@ bool check_states(vector<std::complex<double>> current_state, vector<std::comple
 	return true;
 }
 
+// function to combine list of logic gate operation strings
+vector<string> combine_gates(vector<string> list1, vector<string> list2) {
+	vector<string> new_list;
+	for (int i = 0; i < list1.size(); i++) {
+		new_list.push_back(list1[i]);
+	}
+	for (int i = 0; i < list2.size(); i++) {
+		new_list.push_back(list2[i]);
+	}
+	return new_list;
+}
+
+
 // will manage the current status of the game
 class game_manager(int level, vector<string> gate_list) {
 public:
-	int n_qubits = 3;
+	int n_qubits = 3; // hard coded for now but could come from level
+
+	// get secret states and end state goal, as defined by the level
 	vector<string> secret_gates = get_secret_gates(level); // TODO
 	vector<std::complex<double>> end_state = get_end_state(level); // TODO
 
-	// TODO: combine secret_gates and gate_list to get full_gate_list
+	// combine secret_gates and gate_list to get full_gate_list
+	vector<string> full_gate_list = combine_gates(secret_gates, gate_list); 
 
 	// get current statevector
 	vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
@@ -143,4 +157,4 @@ public:
 	}
 
 
-}
+};

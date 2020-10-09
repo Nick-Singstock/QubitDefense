@@ -24,7 +24,7 @@ int main() {
 
 	cout << "\n= 3 =" << endl;
 
-	vector<string> vectors = results.get_statevector();
+	vector<std::complex<double>> vectors = results.get_statevector();
 
 	cout << "\n= 4 =" << endl;
 

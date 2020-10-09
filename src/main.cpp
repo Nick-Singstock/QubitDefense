@@ -80,6 +80,12 @@ int main() {
 		cout << "(" << goal[j][0] << ", " << goal[j][1] << ")" << endl;
 	}
 
+	vector<vector<double>> goal_comp = gm.goal_state_complex();
+	cout << "Goal State:" << endl;
+	for (int j = 0; j < goal.size(); j++) {
+		cout << goal[j] << endl;
+	}
+
 
 	return 0;
 } // clang++-7 -pthread -std=c++17 -o main main2.cpp

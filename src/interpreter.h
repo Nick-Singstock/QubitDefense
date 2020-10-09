@@ -166,5 +166,8 @@ public:
 	vector<vector<double>> goal_state() {
 		return polar_statevector(end_state);
 	}
+	vector<std::complex<double>> goal_state_complex() {
+		return end_state;
+	}
 
 };

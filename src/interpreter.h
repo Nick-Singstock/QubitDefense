@@ -146,23 +146,18 @@ class game_manager {
 public:
 	int n_qubits = 3; // hard coded for now but could come from level
 
-	//int 
-	level = 1;
-	//vector<string> gate_list;
+	int level = 1;
+	vector<string> gate_list;
 
 	// get secret states and end state goal, as defined by the level
-	//vector<string> 
-	secret_gates = get_secret_gates(level);
-	//vector<std::complex<double>> 
-	end_state = get_end_state(level);
+	vector<string> secret_gates = get_secret_gates(level);
+	vector<std::complex<double>> end_state = get_end_state(level);
 
 	// combine secret_gates and gate_list to get full_gate_list
-	//vector<string> 
-	full_gate_list = combine_gates(secret_gates, gate_list); 
+	vector<string> full_gate_list = combine_gates(secret_gates, gate_list); 
 
 	// get current statevector
-	//vector<std::complex<double>> 
-	current_state = quick_states(n_qubits, full_gate_list);
+	vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
 	
 	// call to determine if game is won
 	bool game_won() {

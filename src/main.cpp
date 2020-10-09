@@ -80,7 +80,7 @@ int main() {
 		cout << "(" << goal[j][0] << ", " << goal[j][1] << ")" << endl;
 	}
 
-	vector<vector<double>> goal_comp = gm.goal_state_complex();
+	vector<std::complex<double>> goal_comp = gm.goal_state_complex();
 	cout << "Goal State:" << endl;
 	for (int j = 0; j < goal.size(); j++) {
 		cout << goal[j] << endl;

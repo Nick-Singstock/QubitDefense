@@ -286,7 +286,7 @@ vector<int> cx_permut(int n, int c, int t) {
 
 	// cf. x_permut
 	for (int i = 0; i < mypow(2, n - 2); i++) {
-		int I = mypow(2, c) + i % mypow(2, c) + ((i - i % mypow(2, c)) * 2) % mypow(2, t) + 2 * ((i - i % mypow(2, c)) * 2 - ((2 * (i - i % mypow(2, c)) % mypow(2, t)));
+		int I = mypow(2, c) + i % mypow(2, c) + ((i - i % mypow(2, c)) * 2) % mypow(2, t) + 2 * ((i - i % mypow(2, c)) * 2 - ((2 * (i - i % mypow(2, c)) % mypow(2, t))));
 		int J = I + mypow(2, t);
 		int a = perm[I];
 		perm[I] = perm[J];

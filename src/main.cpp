@@ -80,11 +80,11 @@ int main() {
 		cout << "(" << goal[j][0] << ", " << goal[j][1] << ")" << endl;
 	}
 
-	vector<std::complex<double>> goal_comp = gm.goal_state_complex();
-	cout << "Goal State Complex:" << endl;
-	for (int j = 0; j < goal_comp.size(); j++) {
-		cout << goal_comp[j] << endl;
-	}
+	//vector<std::complex<double>> goal_comp = gm.goal_state_complex();
+	//cout << "Goal State Complex:" << endl;
+	//for (int j = 0; j < goal_comp.size(); j++) {
+	//	cout << goal_comp[j] << endl;
+	//}
 
 	// test update level
 

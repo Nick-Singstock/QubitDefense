@@ -215,7 +215,7 @@ vector<std::complex<double>> get_end_state(int level) {
 
 	case 2:
 		aux = 1 / sqrt(2);
-		for (int i = 0; i < 8, i++) {
+		for (int i = 0; i < 8; i++) {
 			if (i == 3) {
 				std::complex<double> e(0.0, -aux);
 				end_state.push_back(e);

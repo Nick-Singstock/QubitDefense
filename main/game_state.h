@@ -16,7 +16,7 @@ vector<double> polar_statevector(vector<std::complex<double>> cartesian) {
 	float tol = .01;
 	int n = cartesian.size();
 	double mag, arg, re, im; // auxiliary for each entry
-	vector<double> polar_statevector;
+	vector<vector<double>> polar_statevector;
 
 	// loop through state vector
 	for (int i = 0; i < n; i++) {

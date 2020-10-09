@@ -138,9 +138,11 @@ vector<string> combine_gates(vector<string> list1, vector<string> list2) {
 class game_manager {
 public:
 	int n_qubits = 3; // hard coded for now but could come from level
+
+	level = 1;
 	// get secret states and end state goal, as defined by the level
-	vector<string> secret_gates = get_secret_gates(level); // TODO
-	vector<std::complex<double>> end_state = get_end_state(level); // TODO
+	vector<string> secret_gates = get_secret_gates(level); 
+	vector<std::complex<double>> end_state = get_end_state(level); 
 
 	// combine secret_gates and gate_list to get full_gate_list
 	vector<string> full_gate_list = combine_gates(secret_gates, gate_list); 

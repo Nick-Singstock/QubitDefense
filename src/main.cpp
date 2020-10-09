@@ -71,13 +71,13 @@ int main() {
 	vector<vector<double>> current = gm.statevector();
 	cout << "Current State:" << endl;
 	for (int j = 0; j < current.size(); j++) {
-		cout << current[j] << endl;
+		cout << current[j][0] << " | " << current[j][1] << endl;
 	}
 
 	vector<vector<double>> goal = gm.goal_state();
 	cout << "Goal State:" << endl;
 	for (int j = 0; j < goal.size(); j++) {
-		cout << goal[j] << endl;
+		cout << goal[j][0] << " | " << goal[j][1] << endl;
 	}
 
 

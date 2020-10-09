@@ -777,6 +777,13 @@ vector<string> combine_gates(vector<string> list1, vector<string> list2) {
 	return new_list;
 }
 
+// declare globals for game_manager:
+int level;
+vector<string> gate_list;
+vector<string> secret_gates;
+vector<complex<double>> end_state;
+vector<string> full_gate_list;
+vector<complex<double>> current_state;
 
 // will manage the current status of the game
 class game_manager {
@@ -799,33 +806,43 @@ public:
 	// call to determine if game is won
 	bool game_won() {
 		// get current statevector
-		vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
+		current_state = quick_states(n_qubits, full_gate_list);
 		return check_states(current_state, end_state);
+	}
+
+	void print_level() {
+		cout << "Current level: " << level << endl;
 	}
 
 	void update_level(int new_level) {
 		level = new_level;
 		// get secret states and end state goal, as defined by the level
-		vector<string> secret_gates = get_secret_gates(level);
-		vector<std::complex<double>> end_state = get_end_state(level);
+		secret_gates = get_secret_gates(level);
+		end_state = get_end_state(level);
+		// combine secret_gates and gate_list to get full_gate_list
+		full_gate_list = combine_gates(secret_gates, gate_list);
+		// get current statevector
+		current_state = quick_states(n_qubits, full_gate_list);
 	}
 
 	void add_gate(string new_gate) {
 		gate_list.push_back(new_gate);
 		// combine secret_gates and gate_list to get full_gate_list
-		vector<string> full_gate_list = combine_gates(secret_gates, gate_list);
+		full_gate_list = combine_gates(secret_gates, gate_list);
+		// get current statevector
+		current_state = quick_states(n_qubits, full_gate_list);
 	}
 
 	void update_gates(vector<string> new_gate_list) {
 		gate_list = new_gate_list;
 		// combine secret_gates and gate_list to get full_gate_list
-		vector<string> full_gate_list = combine_gates(secret_gates, gate_list);
+		full_gate_list = combine_gates(secret_gates, gate_list);
+		// get current statevector
+		current_state = quick_states(n_qubits, full_gate_list);
 	}
 
 	// call to get current statevector of game
 	vector<vector<double>> statevector() {
-		// get current statevector
-		vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
 		return polar_statevector(current_state);
 	}
 
@@ -839,4 +856,3 @@ public:
 	}
 
 };
-

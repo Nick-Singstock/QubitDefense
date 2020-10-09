@@ -253,9 +253,9 @@ vector<int> x_permut(int n, int m) {
 	for (int i = 0; i < pow(2, n - 1); i++) {
 		int I = 2 * i - i % pow(2,m);
 		int J = I + pow(2, m);
-			int a = perm[I]
-			perm[I] = perm[J]
-			perm[J] = a
+		int a = perm[I];
+		perm[I] = perm[J];
+		perm[J] = a;
 	}
 
 	return perm;
@@ -278,10 +278,10 @@ vector<int> cx_permut(int n, int c, int t) {
 	for (int i = 0; i < pow(2, n - 2); i++) {
 		int I = pow(2, c) + i % pow(2, c) + ((i - i % pow(2, c)) * 2) % pow(2, t) + 2 * ((i - i % pow(2, c)) * 2 - ((2 * (i - i % pow(2, c)) % pow(2, t)));
 		int J = I + pow(2, t);
-		int a = permut[I];
-		permut[I] = permut[J];
-		permut[J] = a;
+		int a = perm[I];
+		perm[I] = perm[J];
+		perm[J] = a;
 	}
 
-	return permut;
+	return perm;
 }

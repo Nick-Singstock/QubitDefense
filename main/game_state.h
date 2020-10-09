@@ -233,3 +233,55 @@ vector<std::complex<double>> get_end_state(int level) {
 
 	return end_state;
 }
+
+vector<int> x_permut(int n, int m) {
+	// performs permutation equivalent to X gate
+	// args:
+	//	n (int): number of qubits
+	//	m (int): qubit on which gate is applied
+	// rets:
+	//	perm (vector int): permutation of 2**n elements
+
+	// initialize variables
+	vector<int> perm;
+	for (int i = 0; i < pow(2, n); i++) {
+		perm.push_back(i);
+	}
+
+	// loop through entries
+	// avoid matrix multiplication, quite fancy footwork
+	for (int i = 0; i < pow(2, n - 1); i++) {
+		int I = 2 * i - i % pow(2,m);
+		int J = I + pow(2, m);
+			int a = perm[I]
+			perm[I] = perm[J]
+			perm[J] = a
+	}
+
+	return perm;
+}
+
+vector<int> cx_permut(int n, int c, int t) {
+	// performs permutation equivalent to CX gate
+	// args:
+	//	n (int): number of qubits
+	//	c (int): control qubit
+	//	t (int): target qubit
+	// rets:
+	//	perm (vector int): permutation of 2**n elements
+	vector<int> perm;
+	for (int i = 0; i < pow(2, n); i++) {
+		perm.push_back(i);
+	}
+
+	// cf. x_permut
+	for (int i = 0; i < pow(2, n - 2); i++) {
+		int I = pow(2, c) + i % pow(2, c) + ((i - i % pow(2, c)) * 2) % pow(2, t) + 2 * ((i - i % pow(2, c)) * 2 - ((2 * (i - i % pow(2, c)) % pow(2, t)));
+		int J = I + pow(2, t);
+		int a = permut[I];
+		permut[I] = permut[J];
+		permut[J] = a;
+	}
+
+	return permut;
+}

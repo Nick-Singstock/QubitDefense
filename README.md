@@ -22,7 +22,7 @@ vector<vector<double>> goal = gm.state_goal();  # same as state_vector
 This is as far as you need to go to set up the game.
 
 Now, the player interacts with the environment and decides to place a gate (Paulis, Hadamard or CNOT) on a certain (pair of) qubit(s).
-The front-end codifies the choice as a string, the first character signaling what gate is being implemented, and another (pair of) character(s) informing on what qubit(s) the gate is applied.
+The front-end codifies the choice as a string, the first character is a letter signaling what gate is being implemented, and another (pair of) number character(s) informs on what qubit(s) the gate is applied onto.
 Examples of these would be `"x0", "h2", "c10", "c02", "y1"`.
 
 Once the input for next move is decided, the front-end calls the `add_gate` method. In this example, we will use `"x0"`:

@@ -156,5 +156,10 @@ public:
 		return states_polar;
 	}
 
+	// call to get goal state
+	vector<double> goal_state() {
+		vector<double> end_polar = polar_statevector(end_state);
+		return end_polar;
+	}
 
 };

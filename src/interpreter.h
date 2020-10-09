@@ -180,7 +180,7 @@ public:
 	void add_gate(string new_gate) {
 		gate_list.push_back(new_gate);
 		// combine secret_gates and gate_list to get full_gate_list
-		full_gate_list.push_back(new_gate);
+		full_gate_list = combine_gates(secret_gates, gate_list);
 		// get current statevector
 		current_state = quick_states(n_qubits, full_gate_list);
 	}
@@ -200,12 +200,10 @@ public:
 
 	// call to get goal state
 	vector<vector<double>> goal_state() {
-		//end_state = get_end_state(level);
 		return polar_statevector(end_state);
 	}
 	// call to get complex goal state for testing purposes
 	vector<std::complex<double>> goal_state_complex() {
-		//end_state = get_end_state(level);
 		return end_state;
 	}
 

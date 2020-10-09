@@ -87,7 +87,10 @@ int main() {
 	}
 
 	// test update level
+
+	gm.print_level();
 	gm.update_level(2);
+	gm.print_level();
 	vector<vector<double>> goal2 = gm.goal_state();
 	cout << "Goal State for level 2:" << endl;
 	for (int j = 0; j < goal2.size(); j++) {

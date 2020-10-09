@@ -166,6 +166,10 @@ public:
 		return check_states(current_state, end_state);
 	}
 
+	void print_level() {
+		cout << "Current level: " << level << endl;
+	}
+
 	void update_level(int new_level) {
 		level = new_level;
 		// get secret states and end state goal, as defined by the level

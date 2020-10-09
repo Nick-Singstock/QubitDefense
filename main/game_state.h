@@ -57,10 +57,10 @@ vector<double> polar_statevector(vector<std::complex<double>> cartesian) {
 		if (abs(arg - M_PI) < tol) {
 			arg = M_PI;
 		}
-		vector<double> aux {mag, arg}
+		vector<double> aux{ mag, arg };
 
 		// add entry to polar state vector
-		polar_statevector.push_back(aux)
+		polar_statevector.push_back(aux);
 	}
 
 	return polar_statevector;
@@ -112,7 +112,7 @@ vector<vector<vector<double>>> start_level(int level) {
 			}
 			else if (i == 7) {
 				polar2.push_back(aux);
-				polar2.push_back(M_PI)M
+				polar2.push_back(M_PI);
 			}
 			else {
 				polar2.push_back(0.0);

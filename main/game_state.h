@@ -9,9 +9,10 @@
 
 using namespace std;
 
-vector<double> polar_statevector(vector<std::complex<double>> cartesian) {
+vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian) {
 	// polar formula for complex numbers from cartesian
-
+	// it translates an entire statevector, so 2^N entries
+	// each of them will be a pair (magnitude, argument)
 	// declare variables
 	float tol = .01;
 	int n = cartesian.size();

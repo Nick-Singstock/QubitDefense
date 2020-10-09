@@ -244,15 +244,15 @@ vector<int> x_permut(int n, int m) {
 
 	// initialize variables
 	vector<int> perm;
-	for (int i = 0; i < pow(2, n); i++) {
+	for (int i = 0; i < mypow(2, n); i++) {
 		perm.push_back(i);
 	}
 
 	// loop through entries
 	// avoid matrix multiplication, quite fancy footwork
-	for (int i = 0; i < pow(2, n - 1); i++) {
-		int I = 2 * i - i % pow(2,m);
-		int J = I + pow(2, m);
+	for (int i = 0; i < mypow(2, n - 1); i++) {
+		int I = 2 * i - i % mypow(2,m);
+		int J = I + mypow(2, m);
 		int a = perm[I];
 		perm[I] = perm[J];
 		perm[J] = a;
@@ -270,18 +270,28 @@ vector<int> cx_permut(int n, int c, int t) {
 	// rets:
 	//	perm (vector int): permutation of 2**n elements
 	vector<int> perm;
-	for (int i = 0; i < pow(2, n); i++) {
+	for (int i = 0; i < mypow(2, n); i++) {
 		perm.push_back(i);
 	}
 
 	// cf. x_permut
-	for (int i = 0; i < pow(2, n - 2); i++) {
-		int I = pow(2, c) + i % pow(2, c) + ((i - i % pow(2, c)) * 2) % pow(2, t) + 2 * ((i - i % pow(2, c)) * 2 - ((2 * (i - i % pow(2, c)) % pow(2, t)));
-		int J = I + pow(2, t);
+	for (int i = 0; i < mypow(2, n - 2); i++) {
+		int I = mypow(2, c) + i % mypow(2, c) + ((i - i % mypow(2, c)) * 2) % mypow(2, t) + 2 * ((i - i % mypow(2, c)) * 2 - ((2 * (i - i % mypow(2, c)) % mypow(2, t)));
+		int J = I + mypow(2, t);
 		int a = perm[I];
 		perm[I] = perm[J];
 		perm[J] = a;
 	}
 
 	return perm;
+}
+
+int mypow(int x, int p)
+{
+	if (p == 0) return 1;
+	if (p == 1) return x;
+
+	int tmp = mypow(x, p / 2);
+	if (p % 2 == 0) return tmp * tmp;
+	else return x * tmp * tmp;
 }

@@ -155,3 +155,24 @@ vector<vector<vector<double>>> start_level(int level) {
 
 	return states;
 }
+
+vector<string> get_secret_gates(int level) {
+	// let the game manager know how to generate the initial state
+	// again, this is hard coded so not very beautiful
+	
+	vector<string> gates;
+
+	switch (level) {
+	case 1:
+		gates.push_back('h0');
+		gates.push_back('h1');
+		gates.push_back('h2');
+
+	case 2:
+		gates.push_back('h1');
+		gates.push_back('c12');
+
+	}
+
+	return gates;
+}

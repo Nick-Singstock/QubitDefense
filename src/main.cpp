@@ -61,5 +61,9 @@ int main() {
 	bool same_states2 = check_states(quick_vec2, vectors);
 	cout << "Same state (false) = " << same_states2 << endl;
 
+	// test game manager class
+	game_manager gm;
+	cout << "game manager loaded!" << endl;
+
 	return 0;
 } // clang++-7 -pthread -std=c++17 -o main main2.cpp

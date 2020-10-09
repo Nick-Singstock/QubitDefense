@@ -65,5 +65,21 @@ int main() {
 	game_manager gm;
 	cout << "game manager loaded!" << endl;
 
+	bool iswin = gm.game_won();
+	cout << "did we win? " << iswin << endl;
+
+	vector<vector<double>> current = gm.statevector();
+	cout << "Current State:" << endl;
+	for (int j = 0; j < current.size(); j++) {
+		cout << current[j] << endl;
+	}
+
+	vector<vector<double>> goal = gm.goal_state();
+	cout << "Goal State:" << endl;
+	for (int j = 0; j < goal.size(); j++) {
+		cout << goal[j] << endl;
+	}
+
+
 	return 0;
 } // clang++-7 -pthread -std=c++17 -o main main2.cpp

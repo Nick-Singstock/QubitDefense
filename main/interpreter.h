@@ -6,6 +6,10 @@
 
 using namespace std;
 
+// make variables global
+int level;
+vector<string> gate_list;
+
 class Interpreter {
 
 public:
@@ -131,10 +135,9 @@ vector<string> combine_gates(vector<string> list1, vector<string> list2) {
 
 
 // will manage the current status of the game
-class game_manager(int level, vector<string> gate_list) {
+class game_manager {
 public:
 	int n_qubits = 3; // hard coded for now but could come from level
-
 	// get secret states and end state goal, as defined by the level
 	vector<string> secret_gates = get_secret_gates(level); // TODO
 	vector<std::complex<double>> end_state = get_end_state(level); // TODO
@@ -151,15 +154,13 @@ public:
 	}
 
 	// call to get current statevector of game
-	vector<double> statevector() {
-		vector<double> states_polar = polar_statevector(current_state);
-		return states_polar;
+	vector<vector<double>> statevector() {
+		return polar_statevector(current_state);
 	}
 
 	// call to get goal state
-	vector<double> goal_state() {
-		vector<double> end_polar = polar_statevector(end_state);
-		return end_polar;
+	vector<vector<double>> goal_state() {
+		return polar_statevector(end_state);
 	}
 
 };

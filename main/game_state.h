@@ -72,6 +72,7 @@ vector<vector<vector<double>>> start_level(int level) {
 	// initialize variables
 	vector<vector<vector<double>>> states;
 	vector<vector<double>> initial, goal;
+	double aux = 1 / sqrt(2);
 
 	switch (level)	// Initial and goal states are hard coded for each level
 	{				// This ain't pretty
@@ -99,7 +100,6 @@ vector<vector<vector<double>>> start_level(int level) {
 		}
 
 	case 1:
-		double aux = 1 / sqrt(2);
 		for (int i = 0; i < 8; i++) {
 			vector<double> polar1, polar2;
 			polar1.push_back(0.5 * aux);
@@ -122,7 +122,6 @@ vector<vector<vector<double>>> start_level(int level) {
 		}
 
 	case 2:
-		double aux = 1 / sqrt(2);
 		for (int i = 0; i < 8; i++) {
 			vector<double> polar1, polar2;
 			if (i == 0 || i == 3) {
@@ -181,6 +180,7 @@ vector<std::complex<double>> get_end_state(int level) {
 	// let the game manager know what the goal state is
 	// the end state for each level is hard coded
 	vector<std::complex<double>> end_state;
+	double aux = 1 / sqrt(2);
 
 	switch (level) {
 	case 0:
@@ -196,7 +196,6 @@ vector<std::complex<double>> get_end_state(int level) {
 		}
 
 	case 1:
-		double aux = 1 / sqrt(2);
 		for (int i = 0; i < 8; i++) {
 			if (i == 6) {
 				std::complex<double> e(aux, 0.0);
@@ -213,8 +212,7 @@ vector<std::complex<double>> get_end_state(int level) {
 		}
 
 	case 2:
-		double aux = 1 / sqrt(2);
-		for (int i = 0; i < 8, i++) {
+		for (int i = 0; i < 8; i++) {
 			if (i == 3) {
 				std::complex<double> e(0.0, -aux);
 				end_state.push_back(e);

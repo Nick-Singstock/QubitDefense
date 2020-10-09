@@ -36,8 +36,11 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 				arg = -M_PI / 2;
 			}
 		}
-		else {
+		else if (im > tol) {
 			arg = atan(im / re);
+		}
+		else {
+			arg = -atan(im / re);
 		}
 
 		// recover the ideal solutions

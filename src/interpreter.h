@@ -175,6 +175,10 @@ public:
 		// get secret states and end state goal, as defined by the level
 		secret_gates = get_secret_gates(level);
 		end_state = get_end_state(level);
+		// combine secret_gates and gate_list to get full_gate_list
+		full_gate_list = combine_gates(secret_gates, gate_list);
+		// get current statevector
+		current_state = quick_states(n_qubits, full_gate_list);
 	}
 
 	void add_gate(string new_gate) {

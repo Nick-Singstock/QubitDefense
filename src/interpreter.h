@@ -139,7 +139,7 @@ class game_manager {
 public:
 	int n_qubits = 3; // hard coded for now but could come from level
 
-	level = 1;
+	int level = 1;
 	// get secret states and end state goal, as defined by the level
 	vector<string> secret_gates = get_secret_gates(level); 
 	vector<std::complex<double>> end_state = get_end_state(level); 

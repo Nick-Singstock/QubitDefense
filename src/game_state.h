@@ -24,7 +24,7 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 		// get faulty results
 		re = real(cartesian[i]);
 		im = imag(cartesian[i]);
-		mag = abs(re * re + im * im);
+		mag = sqrt(re * re + im * im);
 		if (abs(re) < tol) {
 			if (abs(im) < tol) {
 				arg = 0;
@@ -306,4 +306,3 @@ vector<int> cx_permut(int n, int c, int t) {
 
 	return perm;
 }
-

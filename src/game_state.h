@@ -104,6 +104,7 @@ vector<vector<vector<double>>> start_level(int level) {
 			initial.push_back(polar1);
 			goal.push_back(polar2);
 		}
+		break;
 
 	case 1:
 		for (int i = 0; i < 8; i++) {
@@ -126,6 +127,7 @@ vector<vector<vector<double>>> start_level(int level) {
 			initial.push_back(polar1);
 			goal.push_back(polar2);
 		}
+		break;
 
 	case 2:
 		for (int i = 0; i < 8; i++) {
@@ -153,6 +155,7 @@ vector<vector<vector<double>>> start_level(int level) {
 			initial.push_back(polar1);
 			goal.push_back(polar2);
 		}
+		break;
 	}
 
 	states.push_back(initial);
@@ -172,10 +175,12 @@ vector<string> get_secret_gates(int level) {
 		gates.push_back("h0");
 		gates.push_back("h1");
 		gates.push_back("h2");
+		break;
 
 	case 2:
 		gates.push_back("h1");
 		gates.push_back("c12");
+		break;
 
 	}
 
@@ -200,6 +205,7 @@ vector<std::complex<double>> get_end_state(int level) {
 				end_state.push_back(e);
 			}
 		}
+		break;
 
 	case 1:
 		for (int i = 0; i < 8; i++) {
@@ -216,6 +222,7 @@ vector<std::complex<double>> get_end_state(int level) {
 				end_state.push_back(e);
 			}
 		}
+		break;
 
 	case 2:
 		for (int i = 0; i < 8; i++) {
@@ -232,6 +239,7 @@ vector<std::complex<double>> get_end_state(int level) {
 				end_state.push_back(e);
 			}
 		}
+		break;
 	}
 
 	return end_state;

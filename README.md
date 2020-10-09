@@ -33,3 +33,7 @@ psi = gm.statevector();
 bool iswin = gm.game_won(); # checks whether the current state equals the goal state
 ~~~~
 With `game_won`, the front-end knows when the player has reached their objective.
+
+
+### Other files
+in `src` and `Unreal_QubitDefenseProject` are all the files we've been working on, and which we haven't managed to link yet.

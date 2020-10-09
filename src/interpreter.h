@@ -198,10 +198,12 @@ public:
 
 	// call to get goal state
 	vector<vector<double>> goal_state() {
+		end_state = get_end_state(level);
 		return polar_statevector(end_state);
 	}
 	// call to get complex goal state for testing purposes
 	vector<std::complex<double>> goal_state_complex() {
+		end_state = get_end_state(level);
 		return end_state;
 	}
 

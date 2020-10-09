@@ -44,7 +44,10 @@ int main() {
 	gates2.push_back("h1");
 	gates2.push_back("x0");
 	vector<string> combined_gates = combine_gates(gates, gates2);
-	cout << "combined gate order = " << combined_gates << endl;
+	cout << "combined gate order:" << endl;
+	for (int j = 0; j < combined_gates.size(); j++) {
+		cout << combined_gates[j] << endl;
+	}
 
 	// test 3 qubits
 	vector<std::complex<double>> quick_vec3 = quick_states(3, combined_gates);

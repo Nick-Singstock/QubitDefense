@@ -234,6 +234,16 @@ vector<std::complex<double>> get_end_state(int level) {
 	return end_state;
 }
 
+int mypow(int x, int p)
+{
+	if (p == 0) return 1;
+	if (p == 1) return x;
+
+	int tmp = mypow(x, p / 2);
+	if (p % 2 == 0) return tmp * tmp;
+	else return x * tmp * tmp;
+}
+
 vector<int> x_permut(int n, int m) {
 	// performs permutation equivalent to X gate
 	// args:
@@ -286,12 +296,3 @@ vector<int> cx_permut(int n, int c, int t) {
 	return perm;
 }
 
-int mypow(int x, int p)
-{
-	if (p == 0) return 1;
-	if (p == 1) return x;
-
-	int tmp = mypow(x, p / 2);
-	if (p % 2 == 0) return tmp * tmp;
-	else return x * tmp * tmp;
-}

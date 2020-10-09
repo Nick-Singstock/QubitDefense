@@ -81,11 +81,36 @@ int main() {
 	}
 
 	vector<std::complex<double>> goal_comp = gm.goal_state_complex();
-	cout << "Goal State:" << endl;
+	cout << "Goal State Complex:" << endl;
 	for (int j = 0; j < goal_comp.size(); j++) {
 		cout << goal_comp[j] << endl;
 	}
 
+	// test update level
+	gm.update_level(2);
+	vector<vector<double>> goal2 = gm.goal_state();
+	cout << "Goal State for level 2:" << endl;
+	for (int j = 0; j < goal2.size(); j++) {
+		cout << "(" << goal2[j][0] << ", " << goal2[j][1] << ")" << endl;
+	}
+
+	// test add gate
+	vector<vector<double>> current2 = gm.statevector();
+	cout << "Current State level 2:" << endl;
+	for (int j = 0; j < current2.size(); j++) {
+		cout << "(" << current2[j][0] << ", " << current2[j][1] << ")" << endl;
+	}
+
+	gm.add_gate("h0");
+
+	vector<vector<double>> current3 = gm.statevector();
+	cout << "Current State level 2 with h0 added:" << endl;
+	for (int j = 0; j < current3.size(); j++) {
+		cout << "(" << current3[j][0] << ", " << current3[j][1] << ")" << endl;
+	}
+
+	bool iswin2 = gm.game_won();
+	cout << "did we win? " << iswin2 << endl;
 
 	return 0;
 } // clang++-7 -pthread -std=c++17 -o main main2.cpp

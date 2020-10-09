@@ -24,7 +24,7 @@ vector<vector<double>> polar_statevector(vector<std::complex<double>> cartesian)
 		// get faulty results
 		re = real(cartesian[i]);
 		im = imag(cartesian[i]);
-		mag = re * re + im * im;
+		mag = abs(re * re + im * im);
 		if (abs(re) < tol) {
 			if (im > 0) {
 				arg = M_PI / 2;

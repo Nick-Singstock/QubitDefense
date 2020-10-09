@@ -14,7 +14,7 @@ vector<double> polar_statevector(vector<std::complex<double>> cartesian) {
 	// polar formula for complex numbers from cartesian
 
 	// declare variables
-	float tol = .1;
+	float tol = .01;
 	int n = cartesian.size();
 	double mag, arg, re, im; // auxiliary for each entry
 	vector<double> polar_statevector;
@@ -176,4 +176,60 @@ vector<string> get_secret_gates(int level) {
 	}
 
 	return gates;
+}
+
+vector<std::complex<double>> get_end_state(int level) {
+	// let the game manager know what the goal state is
+	// the end state for each level is hard coded
+	vector<std::complex<double>> end_state;
+
+	switch (level) {
+	case 0:
+		for (int i = 0; i < 8; i++) {
+			if (i == 6) {
+				std::complex<double> e(-1.0, 0.0);
+				end_state.push_back(e);
+			}
+			else {
+				std::complex<double> e(0.0, 0.0);
+				end_state.push_back(e);
+			}
+		}
+
+	case 1:
+		aux = 1 / sqrt(2);
+		for (int i = 0; i < 8; i++) {
+			if (i == 6) {
+				std::complex<double> e(aux, 0.0);
+				end_state.push_back(e);
+			}
+			else if (i == 7) {
+				std::complex<double> e(-aux, 0.0);
+				end_state.push_back(e);
+			}
+			else {
+				std::complex<double> e(0.0, 0.0);
+				end_state.push_back(e);
+			}
+		}
+
+	case 2:
+		aux = 1 / sqrt(2);
+		for (int i = 0; i < 8, i++) {
+			if (i == 3) {
+				std::complex<double> e(0.0, -aux);
+				end_state.push_back(e);
+			}
+			else if (i == 5) {
+				std::complex<double> e(0.0, aux);
+				end_state.push_back(e);
+			}
+			else {
+				std::complex<double> e(0.0, 0.0);
+				end_state.push_back(e);
+			}
+		}
+	}
+
+	return end_state;
 }

@@ -13,9 +13,9 @@ game_manager gm;
 
 Now the game is initialized to level 1, right now we have three levels (0, 1, and 2), you can check the documentation to change levels.
 At this point, you'll want to know what the initial quantum state for this level is, as well as the goal for the player.
-You can achieve that using the methods `state_vector()` and `state_goal()`, for example:
+You can achieve that using the methods `statevector()` and `state_goal()`, for example:
 ~~~~
-vector<vector<double>> psi = gm.state_vector(); # each amplitude is a magnitude-angle pair
+vector<vector<double>> psi = gm.statevector(); # each amplitude is a magnitude-angle pair
 vector<vector<double>> goal = gm.state_goal();  # same as state_vector
 ~~~~
 
@@ -29,7 +29,7 @@ Once the input for next move is decided, the front-end calls the `add_gate` meth
 ~~~~
 gm.add_gate("x0");
 # Now we retrieve the current quantum state again
-psi = gm.state_vector();
+psi = gm.statevector();
 bool iswin = gm.game_won(); # checks whether the current state equals the goal state
 ~~~~
 With `game_won`, the front-end knows when the player has reached their objective.

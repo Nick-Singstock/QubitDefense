@@ -15,8 +15,7 @@ Now the game is initialized to level 1, right now we have three levels (0, 1, an
 At this point, you'll want to know what the initial quantum state for this level is, as well as the goal for the player.
 You can achieve that using the methods `state_vector()` and `state_goal()`, for example:
 ~~~~
-vector<vector<double>> psi = gm.state_vector(); # this is a vector<vector<double>>
-                         # each amplitude is a magnitude-angle pair
+vector<vector<double>> psi = gm.state_vector(); # each amplitude is a magnitude-angle pair
 vector<vector<double>> goal = gm.state_goal();  # same as state_vector
 ~~~~
 

@@ -801,8 +801,29 @@ public:
 		return check_states(current_state, end_state);
 	}
 
+	void update_level(int new_level) {
+		level = new_level;
+		// get secret states and end state goal, as defined by the level
+		vector<string> secret_gates = get_secret_gates(level);
+		vector<std::complex<double>> end_state = get_end_state(level);
+	}
+
+	void add_gate(string new_gate) {
+		gate_list.push_back(new_gate);
+		// combine secret_gates and gate_list to get full_gate_list
+		vector<string> full_gate_list = combine_gates(secret_gates, gate_list);
+	}
+
+	void update_gates(vector<string> new_gate_list) {
+		gate_list = new_gate_list;
+		// combine secret_gates and gate_list to get full_gate_list
+		vector<string> full_gate_list = combine_gates(secret_gates, gate_list);
+	}
+
 	// call to get current statevector of game
 	vector<vector<double>> statevector() {
+		// get current statevector
+		vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
 		return polar_statevector(current_state);
 	}
 

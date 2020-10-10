@@ -780,81 +780,81 @@ vector<string> combine_gates(vector<string> list1, vector<string> list2) {
 
 
 // declare globals for game_manager:
-int level;
-vector<string> gate_list;
-vector<string> secret_gates;
-vector<complex<double>> end_state;
-vector<string> full_gate_list;
-vector<complex<double>> current_state;
+int level_gm;
+vector<string> gate_list_gm;
+vector<string> secret_gates_gm;
+vector<complex<double>> end_state_gm;
+vector<string> full_gate_list_gm;
+vector<complex<double>> current_state_gm;
 
 // will manage the current status of the game
 class game_manager {
 public:
 	int n_qubits = 3; // hard coded for now but could come from level
 
-	int level = 1;
-	vector<string> gate_list;
+	int level_gm = 1;
+	vector<string> gate_list_gm;
 
 	// get secret states and end state goal, as defined by the level
-	vector<string> secret_gates = get_secret_gates(level);
-	vector<std::complex<double>> end_state = get_end_state(level);
+	vector<string> secret_gates_gm = get_secret_gates(level_gm);
+	vector<std::complex<double>> end_state_gm = get_end_state(level_gm);
 
 	// combine secret_gates and gate_list to get full_gate_list
-	vector<string> full_gate_list = combine_gates(secret_gates, gate_list);
+	vector<string> full_gate_list = combine_gates(secret_gates_gm, gate_list_gm);
 
 	// get current statevector
-	vector<std::complex<double>> current_state = quick_states(n_qubits, full_gate_list);
+	vector<std::complex<double>> current_state_gm = quick_states(n_qubits, full_gate_list_gm);
 
 	// call to determine if game is won
 	bool game_won() {
 		// get current statevector
-		current_state = quick_states(n_qubits, full_gate_list);
-		return check_states(current_state, end_state);
+		current_state_gm = quick_states(n_qubits, full_gate_list_gm);
+		return check_states(current_state_gm, end_state_gm);
 	}
 
 	void print_level() {
-		cout << "Current level: " << level << endl;
+		cout << "Current level: " << level_gm << endl;
 	}
 
 	void update_level(int new_level) {
-		level = new_level;
+		level_gm = new_level;
 		// get secret states and end state goal, as defined by the level
-		secret_gates = get_secret_gates(level);
-		end_state = get_end_state(level);
+		secret_gates_gm = get_secret_gates(level_gm);
+		end_end_state_gmstate = get_end_state(level_gm);
 		// combine secret_gates and gate_list to get full_gate_list
-		full_gate_list = combine_gates(secret_gates, gate_list);
+		full_gate_list_gm = combine_gates(secret_gates_gm, gate_list_gm);
 		// get current statevector
-		current_state = quick_states(n_qubits, full_gate_list);
+		current_state_gm = quick_states(n_qubits, full_gate_list_gm);
 	}
 
 	void add_gate(string new_gate) {
-		gate_list.push_back(new_gate);
+		gate_list_gm.push_back(new_gate);
 		// combine secret_gates and gate_list to get full_gate_list
-		full_gate_list = combine_gates(secret_gates, gate_list);
+		full_gate_list_gm = combine_gates(secret_gates_gm, gate_list_gm);
 		// get current statevector
-		current_state = quick_states(n_qubits, full_gate_list);
+		current_state_gm = quick_states(n_qubits, full_gate_list_gm);
 	}
 
 	void update_gates(vector<string> new_gate_list) {
-		gate_list = new_gate_list;
+		gate_list_gm = new_gate_list;
 		// combine secret_gates and gate_list to get full_gate_list
-		full_gate_list = combine_gates(secret_gates, gate_list);
+		full_gate_list_gm = combine_gates(secret_gates_gm, gate_list_gm);
 		// get current statevector
-		current_state = quick_states(n_qubits, full_gate_list);
+		current_state_gm = quick_states(n_qubits, full_gate_list_gm);
 	}
 
 	// call to get current statevector of game
 	vector<vector<double>> statevector() {
-		return polar_statevector(current_state);
+		return polar_statevector(current_state_gm);
 	}
 
 	// call to get goal state
 	vector<vector<double>> goal_state() {
-		return polar_statevector(end_state);
+		return polar_statevector(end_state_gm);
 	}
 	// call to get complex goal state for testing purposes
 	vector<std::complex<double>> goal_state_complex() {
-		return end_state;
+		return end_state_gm;
 	}
 
 };
